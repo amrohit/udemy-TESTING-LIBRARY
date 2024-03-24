@@ -1,9 +1,20 @@
+import { useState } from "react";
 import "./App.css";
 
 function App() {
+  const [currentColor, setCurrentColor] = useState("red");
+  const nextColor = currentColor === "red" ? "blue" : "red";
+
+  function onClickHandler() {
+    // setCurrentColor((prev) => (prev === "red" ? "blue" : "red"));
+    setCurrentColor(nextColor);
+  }
+
   return (
     <div>
-      <button className="red">Change to blue</button>
+      <button className={currentColor} onClick={onClickHandler} type="button">
+        Change to {nextColor}
+      </button>
     </div>
   );
 }

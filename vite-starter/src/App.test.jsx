@@ -1,7 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import App from "./App";
 
-test("button starts with correct label and color!", () => {
+test("button click flow!", () => {
   // const { container } = render(<App />);
   // logRoles(container);
   render(<App />);
@@ -10,19 +10,14 @@ test("button starts with correct label and color!", () => {
   // first assertion
   expect(btnElement).toHaveClass("red");
 
-  // second assertion
-});
-
-test("button has correct label and color after click!", () => {
-  // render the App
-  render(<App />);
-
-  // find the button
-  screen.getByRole("button");
   // click the button
+  fireEvent.click(btnElement);
 
   // check button text
+  expect(btnElement).toHaveTextContent(/red/);
 
   // check button color
+  // expect(btnElement).toHaveClass("blue");
+  // expect(btnElement).toHaveStyle({ "background-color": "blue" }); // failed
+  expect(btnElement).toHaveStyle({ "background-color": "rgb(0, 0, 255)" }); // passed
 });
-
