@@ -1,8 +1,18 @@
 import { render, screen } from "@testing-library/react";
+import { logRoles } from "@testing-library/react";
 import App from "./App";
 
-test("App contains correct heading", () => {
+test("button starts with correct color!", () => {
   render(<App />);
-  const headingElement = screen.getByText(/learn react/i);
-  expect(headingElement).toBeInTheDocument();
+  const btnElement = screen.getByRole("button", { name: /blue/i });
+  // first assertion
+  expect(btnElement).toHaveClass("red");
+
+  // second assertion
 });
+
+test("button starts with correct text", () => {});
+
+test("button has correct color after click!", () => {});
+
+test("button has correct text after click", () => {});
