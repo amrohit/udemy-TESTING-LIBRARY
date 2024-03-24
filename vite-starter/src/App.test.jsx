@@ -31,13 +31,14 @@ test('checkbox flow', () => {
   const buttonElement = screen.getByRole("button", { name: /blue/i });
 
   // find checkbox having accessible name which will be the label for the input
-  const checkboxElement = screen.getByRole('checkbox', { name: /disable button/i });
+  const checkboxElement = screen.getByRole("checkbox", { name: /disable button/i });
 
   // check intial condition if checkbox is unchecked and button is enabled
   expect(buttonElement).toBeEnabled();
   expect(checkboxElement).not.toBeChecked();
 
-  checkboxElement.click();
+  // checkboxElement.click();
+  fireEvent.click(checkboxElement);
   expect(checkboxElement).toBeChecked();
   expect(buttonElement).toBeDisabled();
 })
