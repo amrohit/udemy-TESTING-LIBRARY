@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-test("button starts with correct color!", () => {
+test("button starts with correct label and color!", () => {
   // const { container } = render(<App />);
   // logRoles(container);
   render(<App />);
@@ -13,8 +13,16 @@ test("button starts with correct color!", () => {
   // second assertion
 });
 
-test("button starts with correct text", () => {});
+test("button has correct label and color after click!", () => {
+  // render the App
+  render(<App />);
 
-test("button has correct color after click!", () => {});
+  // find the button
+  screen.getByRole("button");
+  // click the button
 
-test("button has correct text after click", () => {});
+  // check button text
+
+  // check button color
+});
+
