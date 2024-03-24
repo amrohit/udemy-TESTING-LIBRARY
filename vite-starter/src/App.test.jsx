@@ -21,3 +21,23 @@ test("button click flow!", () => {
   // expect(btnElement).toHaveStyle({ "background-color": "blue" }); // failed
   expect(btnElement).toHaveStyle({ "background-color": "rgb(0, 0, 255)" }); // passed
 });
+
+// test is a global from vitest
+// when check the checkbox on the button is disabled, check off will make enabled
+test('checkbox flow', () => {
+  render(<App />);
+
+  // find button
+  const buttonElement = screen.getByRole("button", { name: /blue/i });
+
+  // find checkbox having accessible name which will be the label for the input
+  const checkboxElement = screen.getByRole('checkbox', { name: /disable button/i });
+
+  // check intial condition if checkbox is unchecked and button is enabled
+  expect(buttonElement).toBeEnabled();
+  expect(checkboxElement).not.toBeChecked();
+
+  checkboxElement.click();
+  expect(checkboxElement).toBeChecked();
+  expect(buttonElement).toBeDisabled();
+})

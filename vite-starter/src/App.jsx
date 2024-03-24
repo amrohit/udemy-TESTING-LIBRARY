@@ -3,18 +3,37 @@ import "./App.css";
 
 function App() {
   const [currentColor, setCurrentColor] = useState("red");
+  const [checkboxCheckedStatus, setCheckboxCheckedStatus] = useState(false);
+
   const nextColor = currentColor === "red" ? "blue" : "red";
 
   function onClickHandler() {
     // setCurrentColor((prev) => (prev === "red" ? "blue" : "red"));
     setCurrentColor(nextColor);
   }
+  function onCheckboxChangeHandler(e) {
+    setCheckboxCheckedStatus(e.target.checked);
+  }
 
   return (
     <div>
-      <button className={currentColor} onClick={onClickHandler} type="button">
+      <button
+        className={currentColor}
+        onClick={onClickHandler}
+        type="button"
+        disabled={checkboxCheckedStatus}
+      >
         Change to {nextColor}
       </button>
+      <br />
+      <label htmlFor="disable-button-checkbox">Disable button</label>
+      <input
+        type="checkbox"
+        id="disable-button-checkbox"
+        defaultChecked={false}
+        checked={checkboxCheckedStatus}
+        onClick={onCheckboxChangeHandler}
+      />
     </div>
   );
 }
