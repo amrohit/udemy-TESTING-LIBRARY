@@ -18,7 +18,7 @@ function App() {
   return (
     <div>
       <button
-        className={currentColor}
+        className={checkboxCheckedStatus ? "disabled" : currentColor}
         onClick={onClickHandler}
         type="button"
         disabled={checkboxCheckedStatus}

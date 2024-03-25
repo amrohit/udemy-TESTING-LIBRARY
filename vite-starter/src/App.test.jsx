@@ -24,7 +24,7 @@ test("button click flow!", () => {
 
 // test is a global from vitest
 // when check the checkbox on the button is disabled, check off will make enabled
-test('checkbox flow', () => {
+test("checkbox flow", () => {
   render(<App />);
 
   // find button
@@ -33,7 +33,7 @@ test('checkbox flow', () => {
   // find checkbox having accessible name which will be the label for the input
   const checkboxElement = screen.getByRole("checkbox", { name: /disable button/i });
 
-  // check intial condition if checkbox is unchecked and button is enabled
+  // check initial condition if checkbox is unchecked and button is enabled
   expect(buttonElement).toBeEnabled();
   expect(checkboxElement).not.toBeChecked();
 
@@ -42,9 +42,24 @@ test('checkbox flow', () => {
   fireEvent.click(checkboxElement);
   expect(checkboxElement).toBeChecked();
   expect(buttonElement).toBeDisabled();
+  expect(buttonElement).toHaveClass("disabled");
 
   // click checkbox to enable the button
   fireEvent.click(checkboxElement);
   expect(checkboxElement).not.toBeChecked();
   expect(buttonElement).toBeEnabled();
-})
+  expect(buttonElement).toHaveClass("red");
+});
+
+test("checkbox flow after button click", () => {
+  render(<App />);
+  const btnElement = screen.getByRole("button", { name: /blue/i });
+  fireEvent.click(btnElement);
+
+  const checkboxElem = screen.getByRole("checkbox", { name: /disable button/i });
+  fireEvent.click(checkboxElem);
+  expect(btnElement).toHaveClass("disabled");
+
+  fireEvent.click(checkboxElem);
+  expect(btnElement).toHaveClass("blue");
+});
